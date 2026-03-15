@@ -22,7 +22,7 @@ Python
 # config.py
 model_id = "sd3.5"       # Supported: sd1.4, sdxl1.0, sd3.5, flux.1
 prompt = "A traditional Chinese ink painting of a dragon"
-guidance_scale = 7.5     # CFG scale
+guidance_scale = 4.5     # CFG scale
 output_path = "./results"
 ```
 
@@ -47,7 +47,7 @@ All generated images will be saved automatically in the `output_path` directory.
 | ------------------ | ------------------------------------ | -------------------- |
 | **model_id**       | Selected model version               | `"sd3.5"`            |
 | **prompt**         | Text prompt for image generation     | `"A traditional..."` |
-| **guidance_scale** | Classifier-Free Guidance (CFG) scale | `7.5`                |
+| **guidance_scale** | Classifier-Free Guidance (CFG) scale | `4.5`                |
 | ···                | ···                                  | ···                  |
 
 
