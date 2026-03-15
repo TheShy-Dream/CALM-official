@@ -23,7 +23,6 @@ Python
 model_id = "sd3.5"       # Supported: sd1.4, sdxl1.0, sd3.5, flux.1
 prompt = "A traditional Chinese ink painting of a dragon"
 guidance_scale = 7.5     # CFG scale
-beta = 0.3               # Bias correction coefficient
 output_path = "./results"
 ```
 
