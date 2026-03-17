@@ -1,15 +1,15 @@
 import abc
 import math
+from typing import Dict, List, Optional, Sequence, Tuple, Union
 
 import cv2
 import numpy as np
 import torch
+from diffusers.models.attention_processor import Attention
+from diffusers.models.embeddings import apply_rotary_emb
 from IPython.display import display
 from PIL import Image
-from typing import Union, Tuple, List, Dict, Sequence, Optional
-from diffusers.models.attention_processor import Attention
 from torch.nn import functional as F
-from diffusers.models.embeddings import apply_rotary_emb
 
 from utils.parser import split_nested_lists
 
@@ -303,10 +303,11 @@ class AttendExciteAttnProcessorDiT:
             query = torch.cat([query, encoder_hidden_states_query_proj], dim=2)
             key = torch.cat([key, encoder_hidden_states_key_proj], dim=2)
             value = torch.cat([value, encoder_hidden_states_value_proj], dim=2)
-        attn_weight, hidden_states = scaled_dot_product_attention_new(query, key, value, dropout_p=0.0, is_causal=False) #[2,24,4429,4429]
-        if encoder_hidden_states is not None: 
-            attn_to_store = attn_weight[:, :, residual.shape[1]:, :residual.shape[1]] #[2,24,333,4096]
-            self.attnstore(attn_to_store.reshape(-1,attn_to_store.shape[2],attn_to_store.shape[3]).permute(0,2,1))
+        attn_weight, hidden_states = scaled_dot_product_attention_new(query, key, value, dropout_p=0.0, is_causal=False)
+        if encoder_hidden_states is not None:
+            attn_to_store = attn_weight[:, :, :residual.shape[1], residual.shape[1]:]
+            self.attnstore(attn_to_store.reshape(-1,attn_to_store.shape[2],attn_to_store.shape[3]).permute(0,1,2))
+
 
         hidden_states = hidden_states.transpose(1, 2).reshape(batch_size, -1, attn.heads * head_dim)
         hidden_states = hidden_states.to(query.dtype)
