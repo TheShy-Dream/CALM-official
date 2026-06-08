@@ -65,3 +65,18 @@ All generated images will be saved automatically in the `output_path` directory.
 ## Evaluation Tool
 
 Quantitative evaluation scripts are available in the `metrics` directory to verify semantic alignment and image quality.
+
+## Citation
+
+If you find this code or research useful, please consider citing our paper, thanks:
+
+```
+@article{chen2026context,
+  title={Context-Aware Latent Space Mediation for Inference-Time Unbiased Semantic Alignment in Text-to-Image Models},
+  author={Chen, Jili and Zeng, Huicheng and Huang, Changqin and Huang, Qionghao and Li, Zilong and Huang, Xiaodi},
+  journal={Expert Systems with Applications},
+  pages={133019},
+  year={2026},
+  publisher={Elsevier}
+}
+```
